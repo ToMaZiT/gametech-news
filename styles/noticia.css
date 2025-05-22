@@ -28,12 +28,32 @@ body {
 
 header {
   background-color: var(--bg-color);
-  padding: 0.5rem 0;
+  padding: 0 0 0.5rem 0;
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
+
+
+.order-black-mode{
+  display: flex;
+  justify-content: center;
+  height: 80px;
+}
+
+.order-black-mode h1 {
+  position: absolute;
+}
+
+.order-black-mode button {
+  margin-inline-start: auto;
+  margin-right: 20px;
+  
+  
+}
+
+
 
 header h1 {
   text-align: center;
@@ -144,6 +164,16 @@ footer {
   border-top: 1px solid var(--border-color);
   margin-top: 2rem;
 }
+
+#theme-toggle {
+  
+  padding: 0.5rem 1rem;
+  background: transparent;
+  font-size: 20px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
   .news-title {

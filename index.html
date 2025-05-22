@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <title>GameTech News</title>
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
   <header>
-    <h1>GameTech News</h1>
+    <div class="order-black-mode">
+      <h1>GameTech News</h1>
+      <button id="theme-toggle"><i class="bi bi-moon"></i></button>
+    </div>
     <nav>
       <ul>
         <li><a href="#home">Inicio</a></li>
@@ -37,23 +41,23 @@
     </section>
 
     <section class="contact-section" id="contact">
-      <form action="https://formsubmit.co/rainbow85612@gmail.com" method="POST" class="contact-form">
-      <input type="text" name="name" placeholder="Tu nombre" required>
-      <input type="email" name="email" placeholder="Tu correo electrónico" required>
-      <textarea name="message" placeholder="Escribí tu mensaje..." rows="5" required></textarea>
-      <button type="submit">📨 Enviar mensaje</button>
+      <form id="contact-form" action="https://formsubmit.co/rainbow85612@gmail.com" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu correo electrónico" required>
+        <textarea name="message" placeholder="Escribí tu mensaje..." rows="5" required></textarea>
+        <button type="submit">📨 Enviar mensaje</button>
 
-    <div id="success-message" class="success-message" style="display: none;">
-      ✅ ¡Mensaje enviado con éxito!
-    </div>
+      <div id="success-message" class="success-message" style="display: none;">
+        ✅ ¡Mensaje enviado con éxito!
+      </div>
     </form>
 
-    </section>
+</section>
   </div>
 
   <footer>
     © 2025 GameTech News. Todos los derechos reservados.
-    <button id="theme-toggle">Modo Oscuro</button>
+    
   </footer>
 
   <script src="main.js"></script>

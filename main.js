@@ -160,20 +160,21 @@ document.getElementById('search').addEventListener('input', (e) => {
 renderNews(techNews, 'tech-news');
 renderNews(gamingNews, 'gaming-news');
 
-document.getElementById('contact-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-  console.log({ name, email, message }); // Simula envío
-  alert('Mensaje enviado con éxito');
-  e.target.reset();
-});
+// A PARTIR DE AQUÍ, SE ELIMINA EL PRIMER BLOQUE DE CÓDIGO DEL FORMULARIO
+// document.getElementById('contact-form').addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const name = document.getElementById('name').value;
+//   const email = document.getElementById('email').value;
+//   const message = document.getElementById('message').value;
+//   console.log({ name, email, message }); // Simula envío
+//   alert('Mensaje enviado con éxito');
+//   e.target.reset();
+// });
 
 document.getElementById('theme-toggle').addEventListener('click', () => {
   document.body.classList.toggle('light-mode');
   const isLight = document.body.classList.contains('light-mode');
-  document.getElementById('theme-toggle').textContent = isLight ? 'Modo Oscuro' : 'Modo Claro';
+  document.getElementById('theme-toggle').innerHTML = isLight ? `<i class="bi bi-moon"></i>` : `<i class="bi bi-moon-fill"></i>`;
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
 
