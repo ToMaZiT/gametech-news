@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Título de la Noticia]</title>
+  <link rel="stylesheet" href="../styles/noticia.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>GameTech News</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#inicio">Inicio</a></li>
+          <li><a href="../index.html#tech-news">Tecnología</a></li>
+          <li><a href="../index.html#gaming-news">Gaming</a></li>
+          <li><a href="../index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="news-container">
+    <article class="news-article">
+      <h1 class="news-title">[Título de la Noticia]</h1>
+      <p class="news-meta">Publicado el [Fecha de Publicación] • Por [Autor]</p>
+      <img src="../images/[nombre-imagen].jpg" alt="[Descripción de la Imagen]" class="news-image">
+      <div class="news-content">
+        <p>[Introducción de la noticia. Describe brevemente de qué trata la noticia en 1-2 oraciones.]</p>
+        <h2>[Subtítulo 1]</h2>
+        <p>[Detalles sobre el subtema 1. Aquí puedes expandir información relevante...]</p>
+        <h2>[Subtítulo 2]</h2>
+        <p>[Detalles sobre el subtema 2. Por ejemplo, disponibilidad, especificaciones, fechas, etc...]</p>
+      </div>
+      <div class="news-footer">
+        <p>Redactado por [Autor]</p>
+        <a href="../index.html" class="back-link">← Volver a noticias</a>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 GameTech News. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+      }
+    });
+  </script>
+</body>
+</html>

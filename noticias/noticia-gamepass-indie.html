@@ -1,0 +1,76 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xbox Game Pass añade 20 títulos indie</title>
+  <link rel="stylesheet" href="../styles/noticia.css">
+</head>
+<body>
+  <div class="news-container">
+    <article class="news-article">
+      <h1 class="news-title">Xbox Game Pass añade 20 títulos indie</h1>
+      <p class="news-meta">Publicado el 16 de mayo de 2025 • Por Marta Díaz</p>
+      <img src="../images/gamepass-indie.png" alt="Xbox Game Pass indie" class="news-image">
+      <div class="news-content">
+        <p>Xbox Game Pass ha ampliado su catálogo con 20 nuevos títulos indie, muchos de ellos premiados en festivales.</p>
+        <h2>Juegos destacados</h2>
+        <p>Entre los nuevos títulos se encuentran Hollow Knight: Silksong y Tunic, disponibles desde hoy...</p>
+        <h2>Suscripción</h2>
+        <p>Los juegos están incluidos en todas las suscripciones de Game Pass.</p>
+      </div>
+      <div class="news-footer">
+        <p>Redactado por Marta Díaz</p>
+        <a href="../index.html" class="back-link">← Volver a noticias</a>
+      </div>
+    </article>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+      }
+    });
+  </script>
+</body>
+</html>

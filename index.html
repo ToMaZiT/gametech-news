@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameTech News</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <header>
+    <h1>GameTech News</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#tech">Tech</a></li>
+        <li><a href="#gaming">Gaming</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <h2>Últimas noticias del mundo tech & gaming</h2>
+      <p>Enterate de lo último en tecnología, videojuegos, hardware y lanzamientos.</p>
+      <input type="text" id="search" placeholder="Buscar noticias...">
+    </section>
+
+    <section class="news-section" id="tech-news-section">
+      <h2>🖥 Tecnología</h2>
+      <div id="tech-news" class="news-grid"></div>
+    </section>
+
+    <section class="news-section" id="gaming-news-section">
+      <h2>🎮 Gaming</h2>
+      <div id="gaming-news" class="news-grid"></div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <h2>📬 Contacto</h2>
+      <form id="contact-form">
+        <input type="text" id="name" placeholder="Nombre" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <textarea id="message" placeholder="Mensaje" rows="4" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 GameTech News. Todos los derechos reservados.
+    <button id="theme-toggle">Modo Oscuro</button>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
