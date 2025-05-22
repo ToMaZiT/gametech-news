@@ -12,8 +12,8 @@
     <nav>
       <ul>
         <li><a href="#home">Inicio</a></li>
-        <li><a href="#tech">Tecnología</a></li>
-        <li><a href="#gaming">Gaming</a></li>
+        <li><a href="#tech-news">Tecnología</a></li>
+        <li><a href="#gaming-news">Gaming</a></li>
         <li><a href="#contact">Contacto</a></li>
       </ul>
     </nav>
@@ -37,13 +37,17 @@
     </section>
 
     <section class="contact-section" id="contact">
-      <h2>📬 Contacto</h2>
-      <form id="contact-form">
-        <input type="text" id="name" placeholder="Nombre" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <textarea id="message" placeholder="Mensaje" rows="4" required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
+      <form action="https://formsubmit.co/rainbow85612@gmail.com" method="POST" class="contact-form">
+      <input type="text" name="name" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu correo electrónico" required>
+      <textarea name="message" placeholder="Escribí tu mensaje..." rows="5" required></textarea>
+      <button type="submit">📨 Enviar mensaje</button>
+
+    <div id="success-message" class="success-message" style="display: none;">
+      ✅ ¡Mensaje enviado con éxito!
+    </div>
+    </form>
+
     </section>
   </div>
 

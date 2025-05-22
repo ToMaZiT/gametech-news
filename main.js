@@ -184,3 +184,30 @@ window.addEventListener('load', () => {
     document.getElementById('theme-toggle').textContent = 'Modo Oscuro';
   }
 });
+
+
+//form
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  fetch("https://formsubmit.co/ajax/rainbow85612@gmail.com", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success === "true") {
+      document.getElementById('success-message').style.display = 'block';
+      form.reset();
+    } else {
+      alert("❌ Hubo un error al enviar el mensaje.");
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    alert("❌ Error inesperado. Intentalo más tarde.");
+  });
+});
