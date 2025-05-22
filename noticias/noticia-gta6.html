@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -46,24 +7,43 @@
   <link rel="stylesheet" href="../styles/noticia.css">
 </head>
 <body>
+  <header>
+    <div class="container">
+      <h1>GameTech News</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#inicio">Inicio</a></li>
+          <li><a href="../index.html#tech-news">Tecnología</a></li>
+          <li><a href="../index.html#gaming-news">Gaming</a></li>
+          <li><a href="../index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <div class="news-container">
     <article class="news-article">
       <h1 class="news-title">GTA VI confirmado para 2025</h1>
-      <p class="news-meta">Publicado el 22 de mayo de 2025 • Por Elena Sánchez</p>
-      <img src="../images/gta6.jpg" alt="GTA VI gameplay" class="news-image">
+      <p class="news-meta">Publicado el 22 de mayo de 2025 • Por Diego Vargas</p>
+      <img src="../images/gta6.jpg" alt="GTA VI" class="news-image">
       <div class="news-content">
-        <p>Rockstar Games ha confirmado oficialmente el lanzamiento de GTA VI para 2025, con un nuevo tráiler que muestra gameplay impresionante.</p>
-        <h2>Nuevo mundo abierto</h2>
-        <p>El juego se desarrollará en una versión ampliada de Vice City, con gráficos de última generación...</p>
+        <p>Rockstar ha publicado un tráiler de GTA VI, confirmando su lanzamiento para 2025. El juego estará disponible para consolas de nueva generación.</p>
+        <h2>Detalles del tráiler</h2>
+        <p>El tráiler muestra un mundo abierto más detallado que nunca, con nuevos personajes y mecánicas de juego...</p>
         <h2>Plataformas</h2>
-        <p>Estará disponible para consolas de nueva generación y PC a finales de 2025.</p>
+        <p>Estará disponible para PlayStation 5, Xbox Series X/S y PC.</p>
       </div>
       <div class="news-footer">
-        <p>Redactado por Elena Sánchez</p>
+        <p>Redactado por Diego Vargas</p>
         <a href="../index.html" class="back-link">← Volver a noticias</a>
       </div>
     </article>
   </div>
+
+  <footer>
+    <p>© 2025 GameTech News. Todos los derechos reservados.</p>
+  </footer>
+
   <script>
     window.addEventListener('load', () => {
       const savedTheme = localStorage.getItem('theme');

@@ -25,10 +25,11 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   transition: all 0.3s ease;
+  
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -73,10 +74,12 @@ nav a:hover {
 }
 
 .hero {
+  width: 100%;
   text-align: center;
   padding: 1.5rem 0;
   margin: 1rem 0;
   border-bottom: 1px solid var(--border-color);
+  box-sizing: border-box;
 }
 
 .hero h2 {
@@ -108,7 +111,9 @@ nav a:hover {
 }
 
 .news-section {
-  margin: 1.5rem 0;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .news-section h2 {

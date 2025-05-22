@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -46,24 +7,43 @@
   <link rel="stylesheet" href="../styles/noticia.css">
 </head>
 <body>
+  <header>
+    <div class="container">
+      <h1>GameTech News</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#inicio">Inicio</a></li>
+          <li><a href="../index.html#tech-news">Tecnología</a></li>
+          <li><a href="../index.html#gaming-news">Gaming</a></li>
+          <li><a href="../index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <div class="news-container">
     <article class="news-article">
       <h1 class="news-title">Samsung presenta pantalla OLED plegable de 8K</h1>
-      <p class="news-meta">Publicado el 20 de mayo de 2025 • Por Juan Pérez</p>
-      <img src="../images/samsung-oled.webp" alt="Pantalla OLED plegable Samsung" class="news-image">
+      <p class="news-meta">Publicado el 20 de mayo de 2025 • Por Carlos Gómez</p>
+      <img src="../images/samsung-oled.webp" alt="Pantalla OLED plegable de Samsung" class="news-image">
       <div class="news-content">
-        <p>Samsung ha dado un paso revolucionario con su nueva pantalla OLED plegable de resolución 8K, ideal para dispositivos móviles de próxima generación.</p>
-        <h2>Tecnología innovadora</h2>
-        <p>La pantalla combina flexibilidad con una calidad de imagen excepcional, perfecta para tablets y smartphones...</p>
+        <p>Samsung ha presentado una nueva pantalla OLED plegable con resolución 8K, ideal para dispositivos compactos. La tecnología promete revolucionar el mercado de tablets y smartphones.</p>
+        <h2>Innovación en pantallas</h2>
+        <p>La pantalla permite resoluciones ultra altas sin comprometer la portabilidad, con un diseño plegable que reduce el tamaño del dispositivo...</p>
         <h2>Disponibilidad</h2>
-        <p>Se espera que los primeros dispositivos con esta tecnología lleguen al mercado a principios de 2026.</p>
+        <p>Se espera que los primeros dispositivos con esta pantalla lleguen a finales de 2025.</p>
       </div>
       <div class="news-footer">
-        <p>Redactado por Juan Pérez</p>
+        <p>Redactado por Carlos Gómez</p>
         <a href="../index.html" class="back-link">← Volver a noticias</a>
       </div>
     </article>
   </div>
+
+  <footer>
+    <p>© 2025 GameTech News. Todos los derechos reservados.</p>
+  </footer>
+
   <script>
     window.addEventListener('load', () => {
       const savedTheme = localStorage.getItem('theme');

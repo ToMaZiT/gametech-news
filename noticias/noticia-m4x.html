@@ -7,11 +7,25 @@
   <link rel="stylesheet" href="../styles/noticia.css">
 </head>
 <body>
+  <header>
+    <div class="container">
+      <h1>GameTech News</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#inicio">Inicio</a></li>
+          <li><a href="../index.html#tech-news">Tecnología</a></li>
+          <li><a href="../index.html#gaming-news">Gaming</a></li>
+          <li><a href="../index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <div class="news-container">
     <article class="news-article">
       <h1 class="news-title">Apple presenta el chip M4X con 40% más potencia gráfica</h1>
       <p class="news-meta">Publicado el 22 de mayo de 2025 • Por Tomás Flores</p>
-      <img src="../images/Apple-M4-chip-badge-240507_big.jpg.large.jpg" alt="Chip M4X de Apple" class="news-image">
+      <img src="../images/m4x.jpg" alt="Chip M4X de Apple" class="news-image">
       <div class="news-content">
         <p>Apple ha revelado su nuevo chip M4X durante su conferencia anual. El procesador promete mejoras sustanciales en rendimiento gráfico, con un incremento del 40% frente a la generación anterior.</p>
         <h2>Arquitectura renovada</h2>
@@ -25,6 +39,11 @@
       </div>
     </article>
   </div>
+
+  <footer>
+    <p>© 2025 GameTech News. Todos los derechos reservados.</p>
+  </footer>
+
   <script>
     window.addEventListener('load', () => {
       const savedTheme = localStorage.getItem('theme');

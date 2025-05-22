@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -46,24 +7,43 @@
   <link rel="stylesheet" href="../styles/noticia.css">
 </head>
 <body>
+  <header>
+    <div class="container">
+      <h1>GameTech News</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#inicio">Inicio</a></li>
+          <li><a href="../index.html#tech-news">Tecnología</a></li>
+          <li><a href="../index.html#gaming-news">Gaming</a></li>
+          <li><a href="../index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <div class="news-container">
     <article class="news-article">
       <h1 class="news-title">Elden Ring 2 anunciado oficialmente</h1>
-      <p class="news-meta">Publicado el 19 de mayo de 2025 • Por Pedro Castillo</p>
+      <p class="news-meta">Publicado el 19 de mayo de 2025 • Por Sofía López</p>
       <img src="../images/eldenring2.jpg" alt="Elden Ring 2" class="news-image">
       <div class="news-content">
-        <p>FromSoftware ha confirmado Elden Ring 2, la esperada secuela de su aclamado RPG de mundo abierto.</p>
-        <h2>Mundo más vasto</h2>
-        <p>El juego promete un mundo aún más grande, con nuevas mecánicas de combate y exploración...</p>
+        <p>FromSoftware ha anunciado oficialmente Elden Ring 2, la secuela de su aclamado RPG. El juego promete un mundo aún más vasto y nuevas mecánicas.</p>
+        <h2>Nuevas mecánicas</h2>
+        <p>Elden Ring 2 introducirá un sistema de combate mejorado y una mayor interacción con el entorno...</p>
         <h2>Lanzamiento</h2>
-        <p>Se espera que llegue a consolas y PC en 2026.</p>
+        <p>Se espera que el juego llegue en 2026.</p>
       </div>
       <div class="news-footer">
-        <p>Redactado por Pedro Castillo</p>
+        <p>Redactado por Sofía López</p>
         <a href="../index.html" class="back-link">← Volver a noticias</a>
       </div>
     </article>
   </div>
+
+  <footer>
+    <p>© 2025 GameTech News. Todos los derechos reservados.</p>
+  </footer>
+
   <script>
     window.addEventListener('load', () => {
       const savedTheme = localStorage.getItem('theme');
